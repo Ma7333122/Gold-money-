@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام إدارة الذهب - الفاتورة الذكية</title>
+    <title>نظام إدارة الذهب المتطور - الإصدار النهائي</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -11,6 +11,18 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #d4af37;
+            --primary-dark: #b8960c;
+            --secondary: #8b7355;
+            --success: #28a745;
+            --danger: #dc3545;
+            --warning: #ffc107;
+            --info: #17a2b8;
+            --dark: #343a40;
+            --light: #f8f9fa;
         }
 
         body {
@@ -25,23 +37,23 @@
             margin: 0 auto;
         }
 
-        /* الشريط العلوي */
+        /* الهيدر */
         .header {
             background: white;
             padding: 15px 25px;
-            border-radius: 12px;
+            border-radius: 15px;
             margin-bottom: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .header h1 {
-            color: #d4af37;
-            font-size: 24px;
+            color: var(--primary);
+            font-size: 26px;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -53,20 +65,21 @@
             flex-wrap: wrap;
         }
 
-        .stat {
-            background: #f8f9fa;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
+        .stat-card {
+            background: var(--light);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 15px;
+            border: 1px solid #eee;
         }
 
-        .stat span:first-child {
-            color: #666;
-            margin-left: 5px;
+        .stat-card span:first-child {
+            color: var(--secondary);
+            margin-left: 8px;
         }
 
-        .stat span:last-child {
-            color: #d4af37;
+        .stat-card span:last-child {
+            color: var(--primary);
             font-weight: 700;
         }
 
@@ -76,38 +89,43 @@
             padding: 10px 20px 0;
             display: flex;
             gap: 5px;
-            border-bottom: 2px solid #d4af37;
+            border-bottom: 3px solid var(--primary);
+            border-radius: 15px 15px 0 0;
             overflow-x: auto;
-            border-radius: 12px 12px 0 0;
         }
 
-        .tab {
+        .tab-btn {
             padding: 10px 20px;
             background: #f5f5f5;
             border: none;
-            border-radius: 8px 8px 0 0;
-            font-size: 14px;
+            border-radius: 10px 10px 0 0;
+            font-size: 15px;
             font-weight: 500;
             cursor: pointer;
             color: #666;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
             white-space: nowrap;
+            transition: all 0.3s;
         }
 
-        .tab.active {
-            background: #d4af37;
+        .tab-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
             color: white;
         }
 
         /* المحتوى */
         .content {
             background: white;
-            padding: 20px;
-            border-radius: 0 0 12px 12px;
+            padding: 25px;
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .tab-pane {
@@ -118,23 +136,89 @@
             display: block;
         }
 
-        /* عناوين الأقسام */
+        /* عنوان القسم */
         .section-title {
-            color: #8b7355;
-            margin-bottom: 15px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #d4af37;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
             flex-wrap: wrap;
             gap: 10px;
+        }
+
+        .section-title h2 {
+            color: var(--secondary);
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* قسم الفاتورة */
+        .invoice-section {
+            background: #fafafa;
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .invoice-number {
+            background: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* سعر الذهب */
+        .price-section {
+            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .price-section label {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 16px;
+        }
+
+        .price-section input {
+            padding: 10px 15px;
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            font-size: 18px;
+            width: 200px;
+            font-weight: 700;
+        }
+
+        .price-note {
+            color: var(--info);
+            font-size: 14px;
         }
 
         /* النماذج */
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 15px;
             margin-bottom: 15px;
         }
@@ -146,59 +230,36 @@
         .form-group label {
             display: block;
             margin-bottom: 5px;
-            color: #666;
-            font-size: 13px;
+            color: var(--secondary);
             font-weight: 500;
+            font-size: 14px;
         }
 
         .form-group input,
-        .form-group select {
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            padding: 10px 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
             font-size: 14px;
             font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s;
         }
 
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
-            border-color: #d4af37;
+            border-color: var(--primary);
         }
 
         .form-group input[readonly] {
-            background: #f8f9fa;
-        }
-
-        /* قسم الفاتورة */
-        .invoice-section {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #d4af37;
-            margin-bottom: 20px;
-        }
-
-        .invoice-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #d4af37;
-        }
-
-        .invoice-number {
-            background: #d4af37;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: 700;
+            background: #f5f5f5;
+            cursor: not-allowed;
         }
 
         /* البحث عن المنتج */
-        .product-search {
+        .search-box {
             position: relative;
         }
 
@@ -209,11 +270,12 @@
             right: 0;
             background: white;
             border: 1px solid #ddd;
-            border-radius: 6px;
-            max-height: 200px;
+            border-radius: 8px;
+            max-height: 250px;
             overflow-y: auto;
             z-index: 1000;
             display: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         .search-results.show {
@@ -221,9 +283,10 @@
         }
 
         .search-item {
-            padding: 8px 12px;
+            padding: 10px 15px;
             border-bottom: 1px solid #eee;
             cursor: pointer;
+            transition: all 0.3s;
         }
 
         .search-item:hover {
@@ -231,24 +294,95 @@
         }
 
         .search-item .name {
-            font-weight: 500;
+            font-weight: 700;
+            color: var(--dark);
         }
 
         .search-item .details {
             font-size: 12px;
             color: #666;
+            margin-top: 3px;
         }
 
-        /* معلومات المخزون */
-        .stock-info {
+        /* معلومات المنتج المختار */
+        .selected-product {
             background: #e3f2fd;
-            padding: 10px;
-            border-radius: 6px;
-            margin: 10px 0;
-            font-size: 14px;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-right: 4px solid var(--info);
         }
 
-        /* جدول المنتجات */
+        .selected-product .title {
+            font-weight: 700;
+            color: var(--info);
+            margin-bottom: 5px;
+        }
+
+        .selected-product .details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+        }
+
+        /* حالة المخزون */
+        .stock-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .stock-available {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .stock-low {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .stock-out {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* بطاقات */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 15px;
+            transition: all 0.3s;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .card-header h3 {
+            color: var(--dark);
+            font-size: 16px;
+        }
+
+        /* الجداول */
         .table-responsive {
             overflow-x: auto;
         }
@@ -260,38 +394,20 @@
         }
 
         th {
-            background: #d4af37;
+            background: var(--primary);
             color: white;
-            padding: 10px;
+            padding: 12px;
             font-weight: 500;
         }
 
         td {
-            padding: 8px;
+            padding: 10px;
             border-bottom: 1px solid #eee;
             text-align: center;
         }
 
-        /* بطاقات */
-        .cards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-        }
-
-        .card {
-            background: white;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 12px;
-        }
-
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid #eee;
+        tr:hover {
+            background: #f5f5f5;
         }
 
         /* الأزرار */
@@ -300,30 +416,49 @@
             border: none;
             border-radius: 6px;
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             display: inline-flex;
             align-items: center;
             gap: 5px;
             font-family: 'Tajawal', sans-serif;
+            transition: all 0.3s;
         }
 
-        .btn-primary { background: #d4af37; color: white; }
-        .btn-success { background: #28a745; color: white; }
-        .btn-danger { background: #dc3545; color: white; }
-        .btn-info { background: #17a2b8; color: white; }
-        .btn-sm { padding: 4px 8px; font-size: 12px; }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        .btn-primary { background: var(--primary); color: white; }
+        .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: var(--danger); color: white; }
+        .btn-info { background: var(--info); color: white; }
+        .btn-warning { background: var(--warning); color: var(--dark); }
+
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+
+        .btn-block {
+            width: 100%;
+            justify-content: center;
+        }
 
         /* الشارات */
         .badge {
-            padding: 3px 8px;
-            border-radius: 12px;
+            padding: 4px 10px;
+            border-radius: 20px;
             font-size: 11px;
             font-weight: 500;
+            display: inline-block;
         }
 
         .badge-success { background: #d4edda; color: #155724; }
         .badge-warning { background: #fff3cd; color: #856404; }
         .badge-danger { background: #f8d7da; color: #721c24; }
+        .badge-info { background: #d1ecf1; color: #0c5460; }
 
         /* التنبيهات */
         .alert {
@@ -331,45 +466,59 @@
             top: 20px;
             left: 50%;
             transform: translateX(-50%);
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 30px;
             color: white;
             font-weight: 500;
             z-index: 9999;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: slideDown 0.3s ease;
         }
 
-        .alert-success { background: #28a745; }
-        .alert-error { background: #dc3545; }
+        .alert-success { background: var(--success); }
+        .alert-error { background: var(--danger); }
+        .alert-warning { background: var(--warning); color: var(--dark); }
 
         /* توقيع المطور */
         .developer {
             position: fixed;
-            bottom: 10px;
-            left: 10px;
+            bottom: 15px;
+            left: 15px;
             background: #6f42c1;
             color: white;
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 12px;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-size: 13px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             z-index: 999;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .developer a {
             color: white;
             text-decoration: none;
             background: rgba(255,255,255,0.2);
-            padding: 3px 8px;
-            border-radius: 15px;
+            padding: 4px 10px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
+        @keyframes slideDown {
+            from { top: -100px; opacity: 0; }
+            to { top: 20px; opacity: 1; }
+        }
+
+        /* التجاوب */
         @media (max-width: 768px) {
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
+            .header { flex-direction: column; text-align: center; }
+            .stats { justify-content: center; }
+            .price-section { flex-direction: column; align-items: stretch; }
+            .price-section input { width: 100%; }
+            .form-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -377,103 +526,119 @@
     <div class="container">
         <!-- الهيدر -->
         <div class="header">
-            <h1><i class="fas fa-gem"></i> نظام إدارة الذهب</h1>
+            <h1><i class="fas fa-gem"></i> نظام إدارة الذهب المتطور</h1>
             <div class="stats">
-                <div class="stat"><span>المنتجات</span> <span id="totalProducts">0</span></div>
-                <div class="stat"><span>العملاء</span> <span id="totalCustomers">0</span></div>
-                <div class="stat"><span>الموظفين</span> <span id="totalEmployees">0</span></div>
+                <div class="stat-card"><span>المنتجات</span> <span id="totalProducts">0</span></div>
+                <div class="stat-card"><span>العملاء</span> <span id="totalCustomers">0</span></div>
+                <div class="stat-card"><span>الموظفين</span> <span id="totalEmployees">0</span></div>
+                <div class="stat-card"><span>الفواتير</span> <span id="totalInvoices">0</span></div>
             </div>
         </div>
 
         <!-- التبويبات -->
         <div class="tabs">
-            <button class="tab active" onclick="app.showTab('pos')"><i class="fas fa-cash-register"></i> نقطة البيع</button>
-            <button class="tab" onclick="app.showTab('products')"><i class="fas fa-boxes"></i> المنتجات</button>
-            <button class="tab" onclick="app.showTab('customers')"><i class="fas fa-users"></i> العملاء</button>
-            <button class="tab" onclick="app.showTab('employees')"><i class="fas fa-user-tie"></i> الموظفين</button>
-            <button class="tab" onclick="app.showTab('invoices')"><i class="fas fa-file-invoice"></i> الفواتير</button>
+            <button class="tab-btn active" onclick="app.switchTab('pos')">
+                <i class="fas fa-cash-register"></i> نقطة البيع
+            </button>
+            <button class="tab-btn" onclick="app.switchTab('products')">
+                <i class="fas fa-boxes"></i> المنتجات
+            </button>
+            <button class="tab-btn" onclick="app.switchTab('customers')">
+                <i class="fas fa-users"></i> العملاء
+            </button>
+            <button class="tab-btn" onclick="app.switchTab('employees')">
+                <i class="fas fa-user-tie"></i> الموظفين
+            </button>
+            <button class="tab-btn" onclick="app.switchTab('invoices')">
+                <i class="fas fa-file-invoice"></i> الفواتير
+            </button>
         </div>
 
         <!-- ===== نقطة البيع ===== -->
         <div id="pos-tab" class="content tab-pane active">
             <div class="section-title">
-                <span><i class="fas fa-file-invoice"></i> فاتورة جديدة</span>
-                <span class="invoice-number">رقم: <span id="invoiceNumber">000001</span></span>
+                <h2><i class="fas fa-file-invoice"></i> فاتورة بيع جديدة</h2>
+                <div class="invoice-number">
+                    <i class="fas fa-hashtag"></i> <span id="invoiceNumber">000001</span>
+                </div>
             </div>
 
-            <!-- نموذج الفاتورة -->
+            <!-- قسم سعر الذهب -->
+            <div class="price-section">
+                <label><i class="fas fa-info-circle"></i> سعر جرام الذهب عيار 21 اليوم:</label>
+                <input type="number" id="goldPrice" step="0.01" min="0" placeholder="أدخل السعر" oninput="app.updateGoldPrice()">
+                <span class="price-note">(يتم حساب العيارات الأخرى تلقائياً)</span>
+            </div>
+
             <div class="invoice-section">
                 <form id="invoiceForm" onsubmit="app.completeInvoice(event)">
-                    <!-- سعر الذهب الحالي -->
-                    <div class="form-group">
-                        <label><i class="fas fa-info-circle"></i> سعر جرام الذهب عيار 21 اليوم</label>
-                        <input type="number" id="goldPriceToday" step="0.01" min="0" required placeholder="أدخل سعر الذهب">
-                    </div>
-
                     <!-- البحث عن المنتج -->
-                    <div class="form-group product-search">
-                        <label>ابحث عن منتج (الاسم أو الباركود)</label>
+                    <div class="form-group search-box">
+                        <label><i class="fas fa-search"></i> ابحث عن منتج (الاسم أو الباركود)</label>
                         <input type="text" id="productSearch" placeholder="اكتب للبحث..." autocomplete="off">
                         <div id="searchResults" class="search-results"></div>
                     </div>
 
-                    <!-- بيانات المنتج المختار -->
-                    <div id="selectedProductInfo" class="stock-info" style="display: none;"></div>
+                    <!-- معلومات المنتج المختار -->
+                    <div id="selectedProductInfo" class="selected-product" style="display: none;">
+                        <div class="title"><i class="fas fa-check-circle"></i> المنتج المختار</div>
+                        <div class="details" id="selectedProductDetails"></div>
+                    </div>
 
-                    <!-- تفاصيل المنتج -->
+                    <!-- تفاصيل البيع -->
                     <div class="form-grid">
                         <div class="form-group">
                             <label>المنتج</label>
-                            <input type="text" id="selectedProductName" readonly>
+                            <input type="text" id="productName" readonly>
                         </div>
                         <div class="form-group">
                             <label>الباركود</label>
-                            <input type="text" id="selectedProductBarcode" readonly>
+                            <input type="text" id="productBarcode" readonly>
                         </div>
                     </div>
 
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>الوزن المتاح</label>
+                            <label>الوزن المتاح (جرام)</label>
                             <input type="number" id="availableWeight" step="0.01" readonly>
                         </div>
                         <div class="form-group">
-                            <label>الوزن المباع</label>
-                            <input type="number" id="sellWeight" step="0.01" min="0" required oninput="app.calculatePrice()">
+                            <label>الوزن المباع (جرام)</label>
+                            <input type="number" id="sellWeight" step="0.01" min="0" required oninput="app.calculateTotal()">
                         </div>
                     </div>
 
                     <div class="form-grid">
                         <div class="form-group">
                             <label>العيار</label>
-                            <select id="sellGoldType" required onchange="app.calculatePrice()">
+                            <select id="sellGoldType" required onchange="app.calculateTotal()">
+                                <option value="21">عيار 21</option>
                                 <option value="24">عيار 24</option>
-                                <option value="21" selected>عيار 21</option>
                                 <option value="18">عيار 18</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>المصنعية</label>
-                            <input type="number" id="sellManufacturing" step="0.01" min="0" value="0" oninput="app.calculatePrice()">
+                            <input type="number" id="sellManufacturing" step="0.01" min="0" value="0" oninput="app.calculateTotal()">
                         </div>
                     </div>
 
                     <div class="form-grid">
                         <div class="form-group">
-                            <label>سعر الذهب للجرام</label>
-                            <input type="number" id="goldPricePerGram" step="0.01" readonly>
+                            <label>سعر الجرام</label>
+                            <input type="number" id="pricePerGram" step="0.01" readonly>
                         </div>
                         <div class="form-group">
-                            <label>إجمالي الذهب</label>
-                            <input type="number" id="goldTotal" step="0.01" readonly>
+                            <label>قيمة الذهب</label>
+                            <input type="number" id="goldValue" step="0.01" readonly>
                         </div>
                         <div class="form-group">
-                            <label>إجمالي الفاتورة</label>
-                            <input type="number" id="invoiceTotal" step="0.01" readonly>
+                            <label>الإجمالي</label>
+                            <input type="number" id="totalAmount" step="0.01" readonly>
                         </div>
                     </div>
 
-                    <!-- اختيار العميل والموظف -->
+                    <!-- العميل والموظف -->
                     <div class="form-grid">
                         <div class="form-group">
                             <label>العميل</label>
@@ -509,29 +674,33 @@
                             <select id="paymentMethod">
                                 <option value="cash">نقدي</option>
                                 <option value="card">بطاقة</option>
-                                <option value="transfer">تحويل</option>
+                                <option value="transfer">تحويل بنكي</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label>المبلغ المدفوع</label>
-                            <input type="number" id="paidAmount" step="0.01" min="0" value="0" oninput="app.updatePaymentStatus()">
+                            <input type="number" id="paidAmount" step="0.01" min="0" value="0" oninput="app.updateRemaining()">
                         </div>
                         <div class="form-group">
                             <label>المتبقي</label>
-                            <input type="number" id="remainingAmount" step="0.01" readonly value="0">
+                            <input type="number" id="remainingAmount" step="0.01" readonly>
                         </div>
                     </div>
 
                     <!-- ملاحظات -->
                     <div class="form-group">
                         <label>ملاحظات</label>
-                        <textarea id="invoiceNotes" rows="2" style="width: 100%; padding: 8px;"></textarea>
+                        <textarea id="invoiceNotes" rows="2" placeholder="أي ملاحظات إضافية..."></textarea>
                     </div>
 
                     <!-- أزرار الإجراء -->
-                    <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                        <button type="submit" class="btn btn-success"><i class="fas fa-check"></i> إنهاء الفاتورة</button>
-                        <button type="button" class="btn btn-danger" onclick="app.resetInvoiceForm()"><i class="fas fa-redo"></i> تفريغ</button>
+                    <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 20px;">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check"></i> إنهاء الفاتورة
+                        </button>
+                        <button type="button" class="btn btn-danger" onclick="app.resetInvoiceForm()">
+                            <i class="fas fa-redo"></i> تفريغ
+                        </button>
                     </div>
                 </form>
             </div>
@@ -540,19 +709,21 @@
         <!-- ===== المنتجات ===== -->
         <div id="products-tab" class="content tab-pane">
             <div class="section-title">
-                <span><i class="fas fa-boxes"></i> المنتجات</span>
-                <button class="btn btn-success btn-sm" onclick="app.showAddProduct()"><i class="fas fa-plus"></i> إضافة</button>
+                <h2><i class="fas fa-boxes"></i> إدارة المنتجات</h2>
+                <button class="btn btn-success btn-sm" onclick="app.toggleProductForm()">
+                    <i class="fas fa-plus"></i> إضافة منتج
+                </button>
             </div>
 
             <!-- نموذج إضافة منتج -->
-            <div id="addProductForm" style="display: none; margin-bottom: 15px;">
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                    <h4 style="margin-bottom: 10px;">إضافة منتج جديد</h4>
+            <div id="productForm" style="display: none; margin-bottom: 20px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <h3 style="margin-bottom: 15px; color: var(--secondary);">إضافة منتج جديد</h3>
                     <form onsubmit="app.addProduct(event)">
                         <div class="form-grid">
                             <div class="form-group">
                                 <label>اسم المنتج</label>
-                                <input type="text" id="productName" required>
+                                <input type="text" id="productNameInput" required>
                             </div>
                             <div class="form-group">
                                 <label>الوزن (جرام)</label>
@@ -561,8 +732,8 @@
                             <div class="form-group">
                                 <label>العيار</label>
                                 <select id="productGoldType">
+                                    <option value="21">عيار 21</option>
                                     <option value="24">عيار 24</option>
-                                    <option value="21" selected>عيار 21</option>
                                     <option value="18">عيار 18</option>
                                 </select>
                             </div>
@@ -573,7 +744,7 @@
                         </div>
                         <div style="display: flex; gap: 10px;">
                             <button type="submit" class="btn btn-success">حفظ</button>
-                            <button type="button" class="btn btn-danger" onclick="app.hideAddProduct()">إلغاء</button>
+                            <button type="button" class="btn btn-danger" onclick="app.toggleProductForm()">إلغاء</button>
                         </div>
                     </form>
                 </div>
@@ -589,6 +760,7 @@
                             <th>الوزن</th>
                             <th>العيار</th>
                             <th>المصنعية</th>
+                            <th>الحالة</th>
                         </tr>
                     </thead>
                     <tbody id="productsList"></tbody>
@@ -599,18 +771,20 @@
         <!-- ===== العملاء ===== -->
         <div id="customers-tab" class="content tab-pane">
             <div class="section-title">
-                <span><i class="fas fa-users"></i> العملاء</span>
-                <button class="btn btn-success btn-sm" onclick="app.showAddCustomer()"><i class="fas fa-plus"></i> إضافة</button>
+                <h2><i class="fas fa-users"></i> إدارة العملاء</h2>
+                <button class="btn btn-success btn-sm" onclick="app.toggleCustomerForm()">
+                    <i class="fas fa-plus"></i> إضافة عميل
+                </button>
             </div>
 
             <!-- نموذج إضافة عميل -->
-            <div id="addCustomerForm" style="display: none; margin-bottom: 15px;">
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                    <h4 style="margin-bottom: 10px;">إضافة عميل جديد</h4>
+            <div id="customerForm" style="display: none; margin-bottom: 20px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <h3 style="margin-bottom: 15px; color: var(--secondary);">إضافة عميل جديد</h3>
                     <form onsubmit="app.addCustomer(event)">
                         <div class="form-grid">
                             <div class="form-group">
-                                <label>الاسم</label>
+                                <label>اسم العميل</label>
                                 <input type="text" id="customerName" required>
                             </div>
                             <div class="form-group">
@@ -620,7 +794,7 @@
                         </div>
                         <div style="display: flex; gap: 10px;">
                             <button type="submit" class="btn btn-success">حفظ</button>
-                            <button type="button" class="btn btn-danger" onclick="app.hideAddCustomer()">إلغاء</button>
+                            <button type="button" class="btn btn-danger" onclick="app.toggleCustomerForm()">إلغاء</button>
                         </div>
                     </form>
                 </div>
@@ -633,18 +807,20 @@
         <!-- ===== الموظفين ===== -->
         <div id="employees-tab" class="content tab-pane">
             <div class="section-title">
-                <span><i class="fas fa-user-tie"></i> الموظفين</span>
-                <button class="btn btn-success btn-sm" onclick="app.showAddEmployee()"><i class="fas fa-plus"></i> إضافة</button>
+                <h2><i class="fas fa-user-tie"></i> إدارة الموظفين</h2>
+                <button class="btn btn-success btn-sm" onclick="app.toggleEmployeeForm()">
+                    <i class="fas fa-plus"></i> إضافة موظف
+                </button>
             </div>
 
             <!-- نموذج إضافة موظف -->
-            <div id="addEmployeeForm" style="display: none; margin-bottom: 15px;">
-                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
-                    <h4 style="margin-bottom: 10px;">إضافة موظف جديد</h4>
+            <div id="employeeForm" style="display: none; margin-bottom: 20px;">
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 10px;">
+                    <h3 style="margin-bottom: 15px; color: var(--secondary);">إضافة موظف جديد</h3>
                     <form onsubmit="app.addEmployee(event)">
                         <div class="form-grid">
                             <div class="form-group">
-                                <label>الاسم</label>
+                                <label>اسم الموظف</label>
                                 <input type="text" id="employeeName" required>
                             </div>
                             <div class="form-group">
@@ -654,7 +830,7 @@
                         </div>
                         <div style="display: flex; gap: 10px;">
                             <button type="submit" class="btn btn-success">حفظ</button>
-                            <button type="button" class="btn btn-danger" onclick="app.hideAddEmployee()">إلغاء</button>
+                            <button type="button" class="btn btn-danger" onclick="app.toggleEmployeeForm()">إلغاء</button>
                         </div>
                     </form>
                 </div>
@@ -667,7 +843,7 @@
         <!-- ===== الفواتير ===== -->
         <div id="invoices-tab" class="content tab-pane">
             <div class="section-title">
-                <span><i class="fas fa-file-invoice"></i> الفواتير</span>
+                <h2><i class="fas fa-file-invoice"></i> سجل الفواتير</h2>
             </div>
 
             <div class="table-responsive">
@@ -678,11 +854,13 @@
                             <th>التاريخ</th>
                             <th>المنتج</th>
                             <th>العميل</th>
+                            <th>الموظف</th>
                             <th>الوزن</th>
                             <th>العيار</th>
                             <th>الإجمالي</th>
                             <th>المدفوع</th>
                             <th>المتبقي</th>
+                            <th>الحالة</th>
                         </tr>
                     </thead>
                     <tbody id="invoicesList"></tbody>
@@ -694,7 +872,7 @@
     <!-- توقيع المطور -->
     <div class="developer">
         <i class="fas fa-code"></i>
-        <span>محمد أحمد فؤاد</span>
+        <span>تطوير: محمد أحمد فؤاد</span>
         <a href="https://wa.me/201010421571" target="_blank">
             <i class="fab fa-whatsapp"></i> +201010421571
         </a>
@@ -704,15 +882,18 @@
     <div id="alertContainer"></div>
 
     <script>
-        // التطبيق الرئيسي
+        // التطبيق الرئيسي - نسخة محسنة بالكامل
         const App = {
             // البيانات
             products: [],
             customers: [],
             employees: [],
             invoices: [],
+            
+            // المتغيرات
             currentInvoiceNumber: 1,
             selectedProduct: null,
+            currentGoldPrice: 0,
 
             // ===== التهيئة =====
             init() {
@@ -720,6 +901,7 @@
                 this.renderAll();
                 this.setupEventListeners();
                 this.updateInvoiceNumber();
+                this.updateGoldPrice();
             },
 
             loadData() {
@@ -729,35 +911,54 @@
                     this.employees = JSON.parse(localStorage.getItem('employees')) || [];
                     this.invoices = JSON.parse(localStorage.getItem('invoices')) || [];
                     this.currentInvoiceNumber = parseInt(localStorage.getItem('lastInvoice')) || 1;
+                    this.currentGoldPrice = parseFloat(localStorage.getItem('goldPrice')) || 0;
                     
                     // إضافة باركود للمنتجات القديمة
                     this.products = this.products.map(p => ({
                         ...p,
-                        barcode: p.barcode || 'PRD' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 100)
+                        barcode: p.barcode || 'PRD' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000)
                     }));
+
+                    // تعيين سعر الذهب في الحقل
+                    if (this.currentGoldPrice > 0) {
+                        document.getElementById('goldPrice').value = this.currentGoldPrice;
+                    }
                 } catch (e) {
                     console.error('خطأ في تحميل البيانات:', e);
+                    this.showAlert('خطأ في تحميل البيانات', 'error');
                 }
             },
 
             saveData() {
-                localStorage.setItem('products', JSON.stringify(this.products));
-                localStorage.setItem('customers', JSON.stringify(this.customers));
-                localStorage.setItem('employees', JSON.stringify(this.employees));
-                localStorage.setItem('invoices', JSON.stringify(this.invoices));
-                localStorage.setItem('lastInvoice', this.currentInvoiceNumber);
+                try {
+                    localStorage.setItem('products', JSON.stringify(this.products));
+                    localStorage.setItem('customers', JSON.stringify(this.customers));
+                    localStorage.setItem('employees', JSON.stringify(this.employees));
+                    localStorage.setItem('invoices', JSON.stringify(this.invoices));
+                    localStorage.setItem('lastInvoice', this.currentInvoiceNumber);
+                    localStorage.setItem('goldPrice', this.currentGoldPrice);
+                } catch (e) {
+                    console.error('خطأ في حفظ البيانات:', e);
+                    this.showAlert('خطأ في حفظ البيانات', 'error');
+                }
             },
 
             setupEventListeners() {
                 document.getElementById('productSearch').addEventListener('input', (e) => this.searchProducts(e.target.value));
+                document.getElementById('goldPrice').addEventListener('input', () => {
+                    this.currentGoldPrice = parseFloat(document.getElementById('goldPrice').value) || 0;
+                    if (this.selectedProduct) this.calculateTotal();
+                });
             },
 
-            // ===== التنقل =====
-            showTab(tabId) {
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            // ===== التنقل بين التبويبات =====
+            switchTab(tabId) {
+                document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
-                document.querySelector(`[onclick="app.showTab('${tabId}')"]`).classList.add('active');
+                document.querySelector(`[onclick="app.switchTab('${tabId}')"]`).classList.add('active');
                 document.getElementById(`${tabId}-tab`).classList.add('active');
+                
+                // تحديث البيانات عند فتح التبويب
                 if (tabId === 'products') this.renderProducts();
                 if (tabId === 'customers') this.renderCustomers();
                 if (tabId === 'employees') this.renderEmployees();
@@ -767,6 +968,7 @@
             // ===== البحث عن المنتجات =====
             searchProducts(query) {
                 const resultsDiv = document.getElementById('searchResults');
+                
                 if (!query || query.length < 2) {
                     resultsDiv.classList.remove('show');
                     return;
@@ -785,9 +987,12 @@
                 resultsDiv.innerHTML = results.map(p => `
                     <div class="search-item" onclick="app.selectProduct(${p.id})">
                         <div class="name">${p.name}</div>
-                        <div class="details">${p.barcode} | وزن: ${p.weight}g | عيار: ${p.goldType}</div>
+                        <div class="details">
+                            ${p.barcode} | وزن: ${p.weight}g | عيار: ${p.goldType} | مصنعية: ${p.manufacturingPrice || 0}
+                        </div>
                     </div>
                 `).join('');
+                
                 resultsDiv.classList.add('show');
             },
 
@@ -797,53 +1002,81 @@
 
                 this.selectedProduct = product;
                 
-                document.getElementById('selectedProductName').value = product.name;
-                document.getElementById('selectedProductBarcode').value = product.barcode;
+                // تعبئة الحقول
+                document.getElementById('productName').value = product.name;
+                document.getElementById('productBarcode').value = product.barcode;
                 document.getElementById('availableWeight').value = product.weight;
                 document.getElementById('sellGoldType').value = product.goldType;
                 document.getElementById('sellManufacturing').value = product.manufacturingPrice || 0;
                 
+                // عرض معلومات المنتج
                 document.getElementById('selectedProductInfo').style.display = 'block';
-                document.getElementById('selectedProductInfo').innerHTML = `
-                    <strong>${product.name}</strong><br>
-                    الوزن المتاح: ${product.weight}g | العيار: ${product.goldType} | المصنعية: ${product.manufacturingPrice || 0}
+                document.getElementById('selectedProductDetails').innerHTML = `
+                    <div><strong>الاسم:</strong> ${product.name}</div>
+                    <div><strong>الوزن:</strong> ${product.weight}g</div>
+                    <div><strong>العيار:</strong> ${product.goldType}</div>
+                    <div><strong>المصنعية:</strong> ${product.manufacturingPrice || 0}</div>
                 `;
                 
+                // إخفاء نتائج البحث
                 document.getElementById('searchResults').classList.remove('show');
                 document.getElementById('productSearch').value = product.name;
-                this.calculatePrice();
+                
+                // حساب السعر
+                this.calculateTotal();
             },
 
             // ===== حساب السعر =====
-            calculatePrice() {
-                const goldPrice = parseFloat(document.getElementById('goldPriceToday').value);
+            updateGoldPrice() {
+                this.currentGoldPrice = parseFloat(document.getElementById('goldPrice').value) || 0;
+                if (this.selectedProduct) this.calculateTotal();
+            },
+
+            getPriceByCarat(basePrice, carat) {
+                if (carat === 21) return basePrice;
+                if (carat === 24) return basePrice * (24/21);
+                if (carat === 18) return basePrice * (18/21);
+                return basePrice;
+            },
+
+            calculateTotal() {
+                const goldPrice = parseFloat(document.getElementById('goldPrice').value);
                 const weight = parseFloat(document.getElementById('sellWeight').value) || 0;
-                const type = parseInt(document.getElementById('sellGoldType').value);
+                const carat = parseInt(document.getElementById('sellGoldType').value);
                 const manufacturing = parseFloat(document.getElementById('sellManufacturing').value) || 0;
 
                 if (!goldPrice || goldPrice <= 0) {
-                    this.showAlert('الرجاء إدخال سعر الذهب', 'error');
+                    this.showAlert('الرجاء إدخال سعر الذهب', 'warning');
                     return;
                 }
 
-                // حساب سعر الذهب حسب العيار
-                let pricePerGram = goldPrice;
-                if (type === 24) pricePerGram = goldPrice * (24/21);
-                if (type === 18) pricePerGram = goldPrice * (18/21);
+                if (weight <= 0) {
+                    document.getElementById('pricePerGram').value = '';
+                    document.getElementById('goldValue').value = '';
+                    document.getElementById('totalAmount').value = '';
+                    return;
+                }
 
-                const goldTotal = weight * pricePerGram;
-                const total = goldTotal + manufacturing;
+                // التحقق من الوزن المتاح
+                if (this.selectedProduct && weight > this.selectedProduct.weight) {
+                    this.showAlert('الوزن المطلوب أكبر من المتاح!', 'error');
+                    document.getElementById('sellWeight').value = this.selectedProduct.weight;
+                    return;
+                }
 
-                document.getElementById('goldPricePerGram').value = pricePerGram.toFixed(2);
-                document.getElementById('goldTotal').value = goldTotal.toFixed(2);
-                document.getElementById('invoiceTotal').value = total.toFixed(2);
+                const pricePerGram = this.getPriceByCarat(goldPrice, carat);
+                const goldValue = weight * pricePerGram;
+                const total = goldValue + manufacturing;
+
+                document.getElementById('pricePerGram').value = pricePerGram.toFixed(2);
+                document.getElementById('goldValue').value = goldValue.toFixed(2);
+                document.getElementById('totalAmount').value = total.toFixed(2);
                 
-                this.updatePaymentStatus();
+                this.updateRemaining();
             },
 
-            // ===== حالة الدفع =====
-            updatePaymentStatus() {
-                const total = parseFloat(document.getElementById('invoiceTotal').value) || 0;
+            updateRemaining() {
+                const total = parseFloat(document.getElementById('totalAmount').value) || 0;
                 const paid = parseFloat(document.getElementById('paidAmount').value) || 0;
                 document.getElementById('remainingAmount').value = (total - paid).toFixed(2);
             },
@@ -868,7 +1101,7 @@
                 this.renderCustomers();
                 this.renderCustomerSelect();
                 document.getElementById('newCustomerName').value = '';
-                this.showAlert('تم إضافة العميل', 'success');
+                this.showAlert('تم إضافة العميل بنجاح', 'success');
             },
 
             // ===== إنهاء الفاتورة =====
@@ -876,7 +1109,7 @@
                 e.preventDefault();
 
                 // التحقق من سعر الذهب
-                const goldPrice = parseFloat(document.getElementById('goldPriceToday').value);
+                const goldPrice = parseFloat(document.getElementById('goldPrice').value);
                 if (!goldPrice || goldPrice <= 0) {
                     this.showAlert('الرجاء إدخال سعر الذهب', 'error');
                     return;
@@ -914,14 +1147,16 @@
                     return;
                 }
 
-                const total = parseFloat(document.getElementById('invoiceTotal').value);
+                const total = parseFloat(document.getElementById('totalAmount').value);
                 const paid = parseFloat(document.getElementById('paidAmount').value) || 0;
+                const remaining = total - paid;
 
                 // إنشاء الفاتورة
                 const invoice = {
                     id: Date.now(),
                     number: this.currentInvoiceNumber++,
                     date: new Date().toLocaleDateString('ar-EG'),
+                    time: new Date().toLocaleTimeString('ar-EG'),
                     product: {
                         id: this.selectedProduct.id,
                         name: this.selectedProduct.name,
@@ -935,14 +1170,14 @@
                     employeeId: employeeId,
                     employeeName: this.getEmployeeName(employeeId),
                     goldPrice: goldPrice,
-                    goldPricePerGram: parseFloat(document.getElementById('goldPricePerGram').value),
-                    goldTotal: parseFloat(document.getElementById('goldTotal').value),
+                    pricePerGram: parseFloat(document.getElementById('pricePerGram').value),
+                    goldValue: parseFloat(document.getElementById('goldValue').value),
                     total: total,
                     paid: paid,
-                    remaining: total - paid,
+                    remaining: remaining,
                     paymentMethod: document.getElementById('paymentMethod').value,
                     notes: document.getElementById('invoiceNotes').value,
-                    status: paid >= total ? 'paid' : paid > 0 ? 'partial' : 'unpaid'
+                    status: remaining <= 0 ? 'paid' : paid > 0 ? 'partial' : 'unpaid'
                 };
 
                 // تحديث المخزون
@@ -964,38 +1199,50 @@
                 this.updateInvoiceNumber();
                 this.resetInvoiceForm();
                 
-                this.showAlert(`تم إنشاء الفاتورة رقم ${invoice.number}`, 'success');
+                this.showAlert(`✅ تم إنشاء الفاتورة رقم ${invoice.number}`, 'success');
                 this.printInvoice(invoice);
             },
 
             // ===== طباعة الفاتورة =====
             printInvoice(invoice) {
                 const printWindow = window.open('', '_blank');
+                const statusText = invoice.status === 'paid' ? 'مدفوع بالكامل' : 
+                                 invoice.status === 'partial' ? 'مدفوع جزئياً' : 'غير مدفوع';
+                
                 printWindow.document.write(`
                     <!DOCTYPE html>
                     <html dir="rtl">
                     <head>
-                        <title>فاتورة ${invoice.number}</title>
+                        <meta charset="UTF-8">
+                        <title>فاتورة رقم ${invoice.number}</title>
                         <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
                         <style>
-                            body { font-family: 'Tajawal', sans-serif; padding: 20px; }
-                            .invoice { max-width: 600px; margin: 0 auto; }
-                            h1 { color: #d4af37; text-align: center; }
+                            body { font-family: 'Tajawal', sans-serif; padding: 30px; background: #f5f5f5; }
+                            .invoice { max-width: 700px; margin: 0 auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+                            h1 { color: #d4af37; text-align: center; margin-bottom: 20px; }
+                            .header { display: flex; justify-content: space-between; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #d4af37; }
                             .info { background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 15px 0; }
-                            table { width: 100%; border-collapse: collapse; }
-                            th { background: #d4af37; color: white; padding: 8px; }
-                            td { padding: 8px; border-bottom: 1px solid #ddd; }
-                            .total { font-size: 18px; font-weight: bold; color: #d4af37; }
+                            table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+                            th { background: #d4af37; color: white; padding: 10px; }
+                            td { padding: 8px; border-bottom: 1px solid #ddd; text-align: center; }
+                            .total { font-size: 18px; font-weight: bold; color: #d4af37; margin-top: 15px; }
+                            .footer { margin-top: 30px; text-align: center; color: #666; }
+                            button { background: #d4af37; color: white; border: none; padding: 10px 20px; border-radius: 5px; margin: 5px; cursor: pointer; }
                         </style>
                     </head>
                     <body>
                         <div class="invoice">
-                            <h1>فاتورة بيع</h1>
+                            <h1><i class="fas fa-gem"></i> محل الذهب</h1>
+                            
+                            <div class="header">
+                                <div><strong>رقم الفاتورة:</strong> ${invoice.number}</div>
+                                <div><strong>التاريخ:</strong> ${invoice.date}</div>
+                            </div>
+                            
                             <div class="info">
-                                <p><strong>رقم:</strong> ${invoice.number}</p>
-                                <p><strong>التاريخ:</strong> ${invoice.date}</p>
                                 <p><strong>العميل:</strong> ${invoice.customerName}</p>
                                 <p><strong>الموظف:</strong> ${invoice.employeeName}</p>
+                                <p><strong>طريقة الدفع:</strong> ${invoice.paymentMethod === 'cash' ? 'نقدي' : invoice.paymentMethod === 'card' ? 'بطاقة' : 'تحويل بنكي'}</p>
                             </div>
                             
                             <table>
@@ -1003,22 +1250,32 @@
                                     <th>المنتج</th>
                                     <th>الوزن</th>
                                     <th>العيار</th>
-                                    <th>السعر</th>
+                                    <th>سعر الجرام</th>
+                                    <th>المصنعية</th>
+                                    <th>الإجمالي</th>
                                 </tr>
                                 <tr>
                                     <td>${invoice.product.name}</td>
                                     <td>${invoice.product.weight}g</td>
                                     <td>${invoice.product.goldType}</td>
+                                    <td>${invoice.pricePerGram}</td>
+                                    <td>${invoice.product.manufacturing}</td>
                                     <td>${invoice.total}</td>
                                 </tr>
                             </table>
                             
-                            <p><strong>الإجمالي:</strong> ${invoice.total}</p>
-                            <p><strong>المدفوع:</strong> ${invoice.paid}</p>
-                            <p><strong>المتبقي:</strong> ${invoice.remaining}</p>
+                            <div style="margin-top: 20px;">
+                                <p><strong>الإجمالي:</strong> ${invoice.total}</p>
+                                <p><strong>المدفوع:</strong> ${invoice.paid}</p>
+                                <p><strong>المتبقي:</strong> ${invoice.remaining}</p>
+                                <p><strong>حالة الدفع:</strong> ${statusText}</p>
+                            </div>
                             
-                            <button onclick="window.print()">طباعة</button>
-                            <button onclick="window.close()">إغلاق</button>
+                            <div class="footer">
+                                <p>شكراً لتعاملكم معنا</p>
+                                <button onclick="window.print()">🖨️ طباعة</button>
+                                <button onclick="window.close()">❌ إغلاق</button>
+                            </div>
                         </div>
                     </body>
                     </html>
@@ -1032,8 +1289,8 @@
 
                 const product = {
                     id: Date.now(),
-                    barcode: 'PRD' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 100),
-                    name: document.getElementById('productName').value,
+                    barcode: 'PRD' + Date.now().toString().slice(-6) + Math.floor(Math.random() * 1000),
+                    name: document.getElementById('productNameInput').value,
                     weight: parseFloat(document.getElementById('productWeight').value),
                     goldType: parseInt(document.getElementById('productGoldType').value),
                     manufacturingPrice: parseFloat(document.getElementById('productManufacturing').value) || 0,
@@ -1043,8 +1300,11 @@
                 this.products.push(product);
                 this.saveData();
                 this.renderProducts();
-                this.hideAddProduct();
-                this.showAlert('تم إضافة المنتج', 'success');
+                this.toggleProductForm();
+                document.getElementById('productNameInput').value = '';
+                document.getElementById('productWeight').value = '';
+                document.getElementById('productManufacturing').value = '0';
+                this.showAlert('✅ تم إضافة المنتج', 'success');
             },
 
             // ===== إضافة عميل =====
@@ -1062,8 +1322,10 @@
                 this.saveData();
                 this.renderCustomers();
                 this.renderCustomerSelect();
-                this.hideAddCustomer();
-                this.showAlert('تم إضافة العميل', 'success');
+                this.toggleCustomerForm();
+                document.getElementById('customerName').value = '';
+                document.getElementById('customerPhone').value = '';
+                this.showAlert('✅ تم إضافة العميل', 'success');
             },
 
             // ===== إضافة موظف =====
@@ -1081,8 +1343,10 @@
                 this.saveData();
                 this.renderEmployees();
                 this.renderEmployeeSelect();
-                this.hideAddEmployee();
-                this.showAlert('تم إضافة الموظف', 'success');
+                this.toggleEmployeeForm();
+                document.getElementById('employeeName').value = '';
+                document.getElementById('employeePosition').value = '';
+                this.showAlert('✅ تم إضافة الموظف', 'success');
             },
 
             // ===== عرض البيانات =====
@@ -1102,6 +1366,9 @@
                 
                 tbody.innerHTML = '';
                 this.products.forEach(p => {
+                    const status = p.weight > 10 ? 'متوفر' : p.weight > 0 ? 'كمية محدودة' : 'غير متوفر';
+                    const statusClass = p.weight > 10 ? 'badge-success' : p.weight > 0 ? 'badge-warning' : 'badge-danger';
+                    
                     const row = tbody.insertRow();
                     row.innerHTML = `
                         <td>${p.barcode}</td>
@@ -1109,6 +1376,7 @@
                         <td>${p.weight}g</td>
                         <td>${p.goldType}</td>
                         <td>${p.manufacturingPrice || 0}</td>
+                        <td><span class="badge ${statusClass}">${status}</span></td>
                     `;
                 });
             },
@@ -1122,9 +1390,10 @@
                     container.innerHTML += `
                         <div class="card">
                             <div class="card-header">
-                                <strong>${c.name}</strong>
+                                <h3>${c.name}</h3>
                             </div>
-                            <div>${c.phone || 'لا يوجد هاتف'}</div>
+                            <div><i class="fas fa-phone"></i> ${c.phone || 'لا يوجد'}</div>
+                            <div><small>${new Date(c.date).toLocaleDateString()}</small></div>
                         </div>
                     `;
                 });
@@ -1139,9 +1408,9 @@
                     container.innerHTML += `
                         <div class="card">
                             <div class="card-header">
-                                <strong>${e.name}</strong>
+                                <h3>${e.name}</h3>
                             </div>
-                            <div>${e.position || 'موظف'}</div>
+                            <div><i class="fas fa-briefcase"></i> ${e.position || 'موظف'}</div>
                         </div>
                     `;
                 });
@@ -1152,18 +1421,25 @@
                 if (!tbody) return;
                 
                 tbody.innerHTML = '';
-                this.invoices.slice(0, 20).forEach(i => {
+                this.invoices.slice(0, 50).forEach(i => {
+                    const statusClass = i.status === 'paid' ? 'badge-success' : 
+                                      i.status === 'partial' ? 'badge-warning' : 'badge-danger';
+                    const statusText = i.status === 'paid' ? 'مدفوع' : 
+                                      i.status === 'partial' ? 'جزئي' : 'غير مدفوع';
+                    
                     const row = tbody.insertRow();
                     row.innerHTML = `
                         <td>${i.number}</td>
                         <td>${i.date}</td>
                         <td>${i.product.name}</td>
                         <td>${i.customerName}</td>
+                        <td>${i.employeeName}</td>
                         <td>${i.product.weight}g</td>
                         <td>${i.product.goldType}</td>
                         <td>${i.total}</td>
                         <td>${i.paid}</td>
                         <td>${i.remaining}</td>
+                        <td><span class="badge ${statusClass}">${statusText}</span></td>
                     `;
                 });
             },
@@ -1192,6 +1468,7 @@
                 document.getElementById('totalProducts').textContent = this.products.length;
                 document.getElementById('totalCustomers').textContent = this.customers.length;
                 document.getElementById('totalEmployees').textContent = this.employees.length;
+                document.getElementById('totalInvoices').textContent = this.invoices.length;
             },
 
             getCustomerName(id) {
@@ -1214,22 +1491,31 @@
                 document.getElementById('selectedProductInfo').style.display = 'none';
                 document.getElementById('paidAmount').value = '0';
                 document.getElementById('remainingAmount').value = '0';
+                document.getElementById('goldPrice').value = this.currentGoldPrice;
             },
 
             // ===== إظهار/إخفاء النماذج =====
-            showAddProduct() { document.getElementById('addProductForm').style.display = 'block'; },
-            hideAddProduct() { document.getElementById('addProductForm').style.display = 'none'; },
-            showAddCustomer() { document.getElementById('addCustomerForm').style.display = 'block'; },
-            hideAddCustomer() { document.getElementById('addCustomerForm').style.display = 'none'; },
-            showAddEmployee() { document.getElementById('addEmployeeForm').style.display = 'block'; },
-            hideAddEmployee() { document.getElementById('addEmployeeForm').style.display = 'none'; },
+            toggleProductForm() {
+                const form = document.getElementById('productForm');
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            },
+
+            toggleCustomerForm() {
+                const form = document.getElementById('customerForm');
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            },
+
+            toggleEmployeeForm() {
+                const form = document.getElementById('employeeForm');
+                form.style.display = form.style.display === 'none' ? 'block' : 'none';
+            },
 
             // ===== التنبيهات =====
             showAlert(message, type = 'success') {
                 const container = document.getElementById('alertContainer');
                 const alert = document.createElement('div');
                 alert.className = `alert alert-${type}`;
-                alert.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i> ${message}`;
+                alert.innerHTML = message;
                 container.innerHTML = '';
                 container.appendChild(alert);
                 setTimeout(() => alert.remove(), 3000);
